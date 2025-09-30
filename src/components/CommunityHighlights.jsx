@@ -1,3 +1,6 @@
+import { useContext} from "react";
+import { ThemeContext} from "../theme/ThemeContext";
+
 const highlights = [
   {
     title: 'vulnerabilidade na API Gateway',
@@ -19,29 +22,29 @@ const highlights = [
 },
 ];
 
-const CommunityHighlights = () => {
+export default function CommunityHighlights() {
+  const { isDarkMode} = useContext(ThemeContext);
+  const themeClass = isDarkMode? "section-dark": "section-light";
+  const cardClass = isDarkMode? "card-dark": "card-light";
+
   return (
-    <section className="bg-[#0F0F0F] text-white py-16 px-6 md:px-18">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+    <section className={`py-16 px-6 md:px-18 transition-colors duration-300 ${themeClass}`}>
+      <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 ${isDarkMode? "title-gradient": ""}`}>
         Destaques da Comunidade
       </h2>
+
       <div className="grid gap-8 md:grid-cols-3">
-        {highlights.map((item, index) => (
-          <div
-            key={index}
-            className="bg-[#1A1A1A] p-6 rounded-lg shadow-md hover:scale-105 transition-transform"
->
-            <h3 className="text-xl font-semibold mb-2 text-orange-400">{item.title}</h3>
-            <p className="text-sm text-gray-300 mb-4">{item.description}</p>
-            <div className="flex justify-between items-center text-sm text-gray-400">
-              <span>👤 {item.author}</span>
-              <span className="text-orange-500">{item.tag}</span>
-            </div>
+      {highlights.map((item, index) => (
+        <div key={index} className={cardClass}>
+          <h3 className="text-xl card-title font-semibold mb-2 ">{item.title}</h3>
+          <p className="text-sm mb-4">{item.description}</p>
+          <div className="flex justify-between items-center text-sm">
+            <span>👤 {item.author}</span>
+            <span className="card-title">{item.tag}</span>
           </div>
+        </div>
 ))}
-      </div>
+    </div>
     </section>
 );
-};
-
-export default CommunityHighlights;
+}

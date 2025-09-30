@@ -1,3 +1,6 @@
+import { useContext} from "react";
+import { ThemeContext} from "../theme/ThemeContext";
+
 const resources = [
   {
     title: 'Não use mais esta técnica nos teus apps',
@@ -19,12 +22,17 @@ const resources = [
 },
 ];
 
-const EducationalResources = () => {
+export default function EducationalResources() {
+  const { isDarkMode} = useContext(ThemeContext);
+  const sectionClass = isDarkMode? "section-dark": "section-light";
+  const cardClass = isDarkMode? "card-dark": "card-light";
+
   return (
-    <section className="bg-[#1A1A1A] text-white py-16 px-6 md:px-18">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+    <section className={`py-16 px-6 md:px-18 transition-colors duration-300 ${sectionClass}`}>
+      <h2 className={`text-3xl md:text-4xl font-bold text-center mb-10 ${isDarkMode? "title-gradient": ""}`}>
         Recursos Educativos
       </h2>
+
       <div className="grid gap-8 md:grid-cols-3 mb-8">
         {resources.map((item, index) => (
           <a
@@ -32,24 +40,20 @@ const EducationalResources = () => {
             href={item.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#0F0F0F] p-6 rounded-lg shadow-md hover:scale-105 transition-transform border border-transparent hover:border-orange-500"
+            className={`${cardClass} block`}
 >
-            <h3 className="text-lg font-semibold text-orange-400 mb-2">{item.title}</h3>
-            <p className="text-sm text-gray-300 mb-4">{item.description}</p>
-            <span className="text-sm text-gray-400">{item.type}</span>
+            <h3 className="text-lg font-semibold card-title mb-2">{item.title}</h3>
+            <p className="text-sm mb-4 opacity-80">{item.description}</p>
+            <span className="text-sm opacity-70">{item.type}</span>
           </a>
 ))}
       </div>
+
       <div className="text-center">
-        <a
-          href="#"
-          className="inline-block bg-gradient-to-r from-red-500 to-orange-500 text-black text-xl font-semibold px-6 py-3 rounded-lg hover:scale-105 transition-transform"
-        >
+        <a href="#" className="inline-block section-button">
           Ver Mais
         </a>
       </div>
     </section>
 );
-};
-
-export default EducationalResources;
+}
