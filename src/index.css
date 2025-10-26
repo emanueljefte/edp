@@ -28,10 +28,15 @@ body.light-mode {
 }
 
 /* Título com gradiente no modo escuro */
-.section-dark .title-gradient, .section-dark .card-title {
+.section-dark .card-title {
   background: linear-gradient(to right, #ef4444, #f97316);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.section-dark .title-gradient {
+  color: white;
+
 }
 
 /* Botão padrão */

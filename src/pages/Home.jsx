@@ -7,17 +7,17 @@ import Gamificacao from "../components/Gamificacao";
 import HeroSection from "../components/HeroSection";
 
 function Home() {
-    return ( 
-        <>
-            <HeroSection />
+  return (
+    <>
+      <HeroSection />
       <CommunityHighlights />
       <DiscussionFeed />
       <EducationalResources />
       <Gamificacao />
       <Eventos />
       <ContributionForm />
-        </>
-     );
+    </>
+  );
 }
 
 export default Home;

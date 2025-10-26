@@ -28,6 +28,9 @@ const ranking = [
   { name: "Nelson", points: 120 },
   { name: "Leandro Malungo", points: 95 },
   { name: "Fábio Aurélio", points: 80 },
+  { name: "Nelson", points: 120 },
+  { name: "Leandro Malungo", points: 95 },
+  { name: "Fábio Aurélio", points: 80 },
 ];
 
 export default function Gamificacao() {
@@ -70,7 +73,7 @@ export default function Gamificacao() {
         } max-w-xl mx-auto`}
       >
         <h3 className="text-2xl font-bold mb-4">🏆 Ranking Semanal</h3>
-        <ul className="space-y-3">
+        <ul className="grid grid-cols-2 gap-4">
           {ranking.map((user, index) => (
             <li
               key={index}
